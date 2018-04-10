@@ -6,7 +6,7 @@ headers = {'User-Agent': 'http-client'}
 conn = http.client.HTTPSConnection("api.fda.gov")
 
 query = 'search=active_ingredient:"acetylsalicylic"'
-limit = 10  #In this case it is 4.
+limit = 10  #In this case it is 4 founded.
 url_path = "/drug/label.json" + "?" + query + "&" + "limit=" + str(limit)
 conn.request("GET", url_path, None, headers)
 r1 = conn.getresponse()
