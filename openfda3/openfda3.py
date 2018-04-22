@@ -17,8 +17,10 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         print(r1.status, r1.reason)
         drugs_raw = r1.read().decode("utf-8")
         conn.close()
-
+        #WITH THIS .LOADS FUNCTION WE DECODE THE JAVA SCRIPT OBJECT NOTATION IN ORDER TO BE ABLE TO APPEND ON AN EMPTY LIST THE ID OF EACH DRUG CONTAINED IN JSON
         drugs = json.loads(drugs_raw)['results']
+        print(drugs)
+
         list=[]
 
         for drug in drugs:
@@ -30,8 +32,10 @@ class testHTTPRequestHandler(http.server.BaseHTTPRequestHandler):
         # Send headers
         self.send_header('Content-type','text/html')
         self.end_headers()
+        #IN ORDER TO CREATE THE HTML DOCUMENT WITH THE DRUGS WE WRITE THIS:
         intro = "<!doctype html>" + "\n" + "<html>" + "\n" + "<body>" + "\n" "<ol>" + "\n"
         end = "</ol>" + "\n" + "</body>" + "\n" + "</html>"
+        #IN ORDER TO IMPLEMENT THE ID OF THE DRUG THAT WE APPEND ON THE EMPTY LIST WE CREATE A FOR LOOP AND USE THE FUNCTION .WRITE
         with open("drugs.html",'w') as f:
             f.write(intro)
             for element in list:
