@@ -6,7 +6,7 @@ import socketserver
 
 socketserver.TCPServer.allow_reuse_address = True
 
-PORT = 8010
+PORT = 8000
 
 OPENFDA_BASIC = False
 
